@@ -2,7 +2,6 @@ import UIKit
 import Lightbox
 
 class ViewController: UIViewController {
-  
   lazy var showButton: UIButton = { [unowned self] in
     let button = UIButton()
     button.addTarget(self, action: #selector(showLightbox), for: .touchUpInside)
@@ -21,6 +20,8 @@ class ViewController: UIViewController {
     view.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin]
     view.backgroundColor = UIColor.white
     view.addSubview(showButton)
+    
+    
   }
   
   // MARK: - Action methods
@@ -44,6 +45,13 @@ class ViewController: UIViewController {
     ]
     
     let controller = LightboxController(images: images)
+    LightboxConfig.handleVideo = { from, videoUrl in
+        
+    }
+    LightboxConfig.CloseButton.text = "X"
+    LightboxConfig.CloseButton.size = CGSize(width: 30.0, height: 30.0)
+    LightboxConfig.PageIndicator.enabled = false
+    controller.scrollView.isScrollEnabled = false
     controller.dynamicBackground = true
     
     present(controller, animated: true, completion: nil)

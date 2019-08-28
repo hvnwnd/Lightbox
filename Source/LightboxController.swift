@@ -19,7 +19,7 @@ open class LightboxController: UIViewController {
 
   // MARK: - Internal views
 
-  lazy var scrollView: UIScrollView = { [unowned self] in
+  open lazy var scrollView: UIScrollView = { [unowned self] in
     let scrollView = UIScrollView()
     scrollView.isPagingEnabled = false
     scrollView.delegate = self
@@ -264,18 +264,19 @@ open class LightboxController: UIViewController {
   // MARK: - Pagination
 
   open func goTo(_ page: Int, animated: Bool = true) {
-    guard page >= 0 && page < numberOfPages else {
+    guard page >= 0 else {
       return
     }
 
-    currentPage = page
+    currentPage = page % numberOfPages
 
     var offset = scrollView.contentOffset
-    offset.x = CGFloat(page) * (scrollView.frame.width + spacing)
+    offset.x = CGFloat(currentPage) * (scrollView.frame.width + spacing)
 
     let shouldAnimated = view.window != nil ? animated : false
 
     scrollView.setContentOffset(offset, animated: shouldAnimated)
+    pageViews[currentPage].prepareDisplay()
   }
 
   open func next(_ animated: Bool = true) {
@@ -407,10 +408,11 @@ extension LightboxController: PageViewDelegate {
   func pageViewDidTouch(_ pageView: PageView) {
     guard !pageView.hasZoomed else { return }
 
-    imageTouchDelegate?.lightboxController(self, didTouch: images[currentPage], at: currentPage)
+    next(false)
+//    imageTouchDelegate?.lightboxController(self, didTouch: images[currentPage], at: currentPage)
 
-    let visible = (headerView.alpha == 1.0)
-    toggleControls(pageView: pageView, visible: !visible)
+//    let visible = (headerView.alpha == 1.0)
+//    toggleControls(pageView: pageView, visible: !visible)
   }
 }
 

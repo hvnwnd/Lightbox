@@ -1,7 +1,6 @@
 import UIKit
 
 protocol PageViewDelegate: class {
-
   func pageViewDidZoom(_ pageView: PageView)
   func remoteImageDidLoad(_ image: UIImage?, imageView: UIImageView)
   func pageView(_ pageView: PageView, didTouchPlayButton videoURL: URL)
@@ -32,6 +31,12 @@ class PageView: UIScrollView {
 
     return button
   }()
+    
+    lazy var videoPlayerView: VideoPlayerView = {
+        let videoPlayerView = VideoPlayerView()
+        
+        return videoPlayerView
+    }()
 
   lazy var loadingIndicator: UIView = LightboxConfig.makeLoadingIndicator()
 
@@ -61,10 +66,14 @@ class PageView: UIScrollView {
   // MARK: - Configuration
 
   func configure() {
-    addSubview(imageView)
+    if nil != self.image.videoURL {
+        addVideoPlayerView()
+    } else {
+        addSubview(imageView)
+    }
 
-    updatePlayButton()
-
+//    updatePlayButton()
+    
     addSubview(loadingIndicator)
 
     delegate = self
@@ -86,9 +95,16 @@ class PageView: UIScrollView {
   }
 
   // MARK: - Update
+    func prepareDisplay() {
+        if let videoUrl = image.videoURL {
+            videoPlayerView.videoURL = videoUrl
+            videoPlayerView.play()
+        }
+    }
+    
   func update(with image: LightboxImage) {
     self.image = image
-    updatePlayButton()
+//    updatePlayButton()
     fetchImage()
   }
 
@@ -99,6 +115,15 @@ class PageView: UIScrollView {
       playButton.removeFromSuperview()
     }
   }
+    
+    func addVideoPlayerView() {
+//        if let videoUrl = self.image.videoURL, !subviews.contains(videoPlayerView) {
+//            videoPlayerView.videoURL = videoUrl
+            addSubview(videoPlayerView)
+//        } else if self.image.videoURL == nil && subviews.contains(playButton) {
+//            videoPlayerView.removeFromSuperview()
+//        }
+    }
 
   // MARK: - Fetch
   private func fetchImage () {
@@ -146,7 +171,7 @@ class PageView: UIScrollView {
     super.layoutSubviews()
 
     loadingIndicator.center = imageView.center
-    playButton.center = imageView.center
+//    playButton.center = imageView.center
   }
 
   func configureImageView() {
@@ -192,6 +217,20 @@ class PageView: UIScrollView {
 
     imageView.frame = imageViewFrame
   }
+    
+    func configureVideoPlayer() {
+        let boundSize = contentFrame.size
+        var videoPlayerFrame = videoPlayerView.frame
+        videoPlayerFrame.size = boundSize
+        
+        videoPlayerView.frame = videoPlayerFrame
+        
+        
+//        videoPlayerView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+//        videoPlayerView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+//        videoPlayerView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+//        videoPlayerView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    }
 
   // MARK: - Action
 
@@ -212,7 +251,11 @@ extension PageView: LayoutConfigurable {
     imageView.frame = frame
     zoomScale = minimumZoomScale
 
-    configureImageView()
+    if image.videoURL != nil {
+        configureVideoPlayer()
+    } else {
+        configureImageView()
+    }
   }
 }
 

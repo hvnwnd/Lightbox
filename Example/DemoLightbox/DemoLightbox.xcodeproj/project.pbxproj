@@ -11,6 +11,7 @@
 		29B4A42F1C43A4320060ED52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B4A42E1C43A4320060ED52 /* ViewController.swift */; };
 		29B4A4341C43A4320060ED52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29B4A4331C43A4320060ED52 /* Assets.xcassets */; };
 		29B4A4371C43A4320060ED52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29B4A4351C43A4320060ED52 /* LaunchScreen.storyboard */; };
+		8F054A1223168C6500DCB904 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F054A1123168C6500DCB904 /* CircleView.swift */; };
 		B89E57B7A21C44D762123511 /* Pods_DemoLightbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE4E898FD95F4D90F624B067 /* Pods_DemoLightbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		29B4A4361C43A4320060ED52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29B4A4381C43A4320060ED52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6096248776155BE47C0A196A /* Pods-DemoLightbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoLightbox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoLightbox/Pods-DemoLightbox.debug.xcconfig"; sourceTree = "<group>"; };
+		8F054A1123168C6500DCB904 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		DAE713340DA5D2F2EF13EA8D /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4E898FD95F4D90F624B067 /* Pods_DemoLightbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoLightbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 			children = (
 				29B4A42C1C43A4320060ED52 /* AppDelegate.swift */,
 				29B4A42E1C43A4320060ED52 /* ViewController.swift */,
+				8F054A1123168C6500DCB904 /* CircleView.swift */,
 				29B4A4331C43A4320060ED52 /* Assets.xcassets */,
 				29B4A4351C43A4320060ED52 /* LaunchScreen.storyboard */,
 				29B4A4381C43A4320060ED52 /* Info.plist */,
@@ -133,6 +136,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -183,7 +187,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DemoLightbox/Pods-DemoLightbox-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-DemoLightbox/Pods-DemoLightbox-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
@@ -196,7 +200,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DemoLightbox/Pods-DemoLightbox-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoLightbox/Pods-DemoLightbox-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -206,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F054A1223168C6500DCB904 /* CircleView.swift in Sources */,
 				29B4A42F1C43A4320060ED52 /* ViewController.swift in Sources */,
 				29B4A42D1C43A4320060ED52 /* AppDelegate.swift in Sources */,
 			);
