@@ -15,6 +15,31 @@ class CircleView: UIView {
     var backgroundLayer: CAShapeLayer!
     var shouldRemove: Bool = false
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        let bgLayer = CAShapeLayer()
+        bgLayer.lineWidth = 4.0
+        bgLayer.strokeColor = UIColor.white.cgColor
+        bgLayer.lineJoin = CAShapeLayerLineJoin.bevel
+        bgLayer.fillColor = nil
+        bgLayer.path = self.roundPath().cgPath
+        self.layer.addSublayer(bgLayer)
+        backgroundLayer = bgLayer
+        
+        let layer = CAShapeLayer()
+        layer.lineWidth = 4.0
+        layer.backgroundColor = UIColor.white.cgColor
+        layer.strokeColor = UIColor.green.cgColor
+        layer.fillColor = nil
+        layer.lineJoin = CAShapeLayerLineJoin.bevel
+        layer.path = self.roundPath().cgPath
+        pathLayer = layer
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func awakeFromNib() {
         let bgLayer = CAShapeLayer()
         bgLayer.lineWidth = 4.0

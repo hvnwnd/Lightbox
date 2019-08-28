@@ -1,7 +1,8 @@
 import UIKit
 import Lightbox
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, LightboxControllerPageDelegate {
+    var circleView: CircleView!
   lazy var showButton: UIButton = { [unowned self] in
     let button = UIButton()
     button.addTarget(self, action: #selector(showLightbox), for: .touchUpInside)
@@ -45,16 +46,20 @@ class ViewController: UIViewController {
     ]
     
     let controller = LightboxController(images: images)
-    LightboxConfig.handleVideo = { from, videoUrl in
-        
-    }
+    
+    circleView = CircleView(frame: CGRect(x: 16, y: 16, width: 30, height: 30))
+    controller.headerView.addSubview(circleView)
     LightboxConfig.CloseButton.text = "X"
     LightboxConfig.CloseButton.size = CGSize(width: 30.0, height: 30.0)
     LightboxConfig.PageIndicator.enabled = false
     controller.scrollView.isScrollEnabled = false
     controller.dynamicBackground = true
-    
+    controller.pageDelegate = self
     present(controller, animated: true, completion: nil)
   }
+    
+    func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
+        circleView.go(from: CGFloat(page - 1) / 4.0, to: CGFloat(page) / 4.0, animated: true)
+    }
 }
 
