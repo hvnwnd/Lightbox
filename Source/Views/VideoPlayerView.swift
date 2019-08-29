@@ -41,7 +41,8 @@ class VideoPlayerView: UIView {
     }
     
     @objc func playerDidFinishPlaying(_ notification: Notification) {
-        NotificationCenter.default.removeObserver(self)
+        player?.seek(to: CMTime(seconds: 0.0, preferredTimescale: CMTimeScale(1.0)))
+        player?.play()
     }
     
     func play() {
