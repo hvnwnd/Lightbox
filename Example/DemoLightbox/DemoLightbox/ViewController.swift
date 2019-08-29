@@ -44,14 +44,14 @@ class ViewController: UIViewController, LightboxControllerPageDelegate {
         text: "A lightbox is a translucent surface illuminated from behind, used for situations where a shape laid upon the surface needs to be seen with high contrast."
       )
     ]
-    
-    let controller = LightboxController(images: images)
-    
-    circleView = CircleView(frame: CGRect(x: 16, y: 16, width: 30, height: 30))
-    controller.headerView.addSubview(circleView)
     LightboxConfig.CloseButton.text = "X"
     LightboxConfig.CloseButton.size = CGSize(width: 30.0, height: 30.0)
-    LightboxConfig.PageIndicator.enabled = false
+    LightboxConfig.PageIndicator.enabled = true
+
+    let controller = LightboxController(images: images)
+    circleView = CircleView(frame: CGRect(x: 0, y: 16, width: 30, height: 30))
+    controller.headerView.pageIndicator = circleView
+    
     controller.scrollView.isScrollEnabled = false
     controller.dynamicBackground = true
     controller.pageDelegate = self
@@ -59,7 +59,7 @@ class ViewController: UIViewController, LightboxControllerPageDelegate {
   }
     
     func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
-        circleView.go(from: CGFloat(page - 1) / 4.0, to: CGFloat(page) / 4.0, animated: true)
+        circleView.go(from: CGFloat(page) / 4.0, to: CGFloat(page + 1) / 4.0, animated: true)
     }
 }
 

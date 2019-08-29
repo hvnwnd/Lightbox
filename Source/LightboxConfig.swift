@@ -40,22 +40,7 @@ public class LightboxConfig {
   ///
   /// 0 - Preload all images (default).
   public static var preload = 0
-
-  public struct PageIndicator {
-    public static var enabled = true
-    public static var separatorColor = UIColor(hex: "3D4757")
-
-    public static var textAttributes: [NSAttributedString.Key: Any] = [
-      .font: UIFont.systemFont(ofSize: 12),
-      .foregroundColor: UIColor(hex: "899AB8"),
-      .paragraphStyle: {
-        var style = NSMutableParagraphStyle()
-        style.alignment = .center
-        return style
-      }()
-    ]
-  }
-
+    
   public struct CloseButton {
     public static var enabled = true
     public static var size: CGSize?
@@ -73,21 +58,8 @@ public class LightboxConfig {
     ]
   }
 
-  public struct DeleteButton {
+  public struct PageIndicator {
     public static var enabled = false
-    public static var size: CGSize?
-    public static var text = NSLocalizedString("Delete", comment: "")
-    public static var image: UIImage?
-
-    public static var textAttributes: [NSAttributedString.Key: Any] = [
-      .font: UIFont.boldSystemFont(ofSize: 16),
-      .foregroundColor: UIColor(hex: "FA2F5B"),
-      .paragraphStyle: {
-        var style = NSMutableParagraphStyle()
-        style.alignment = .center
-        return style
-      }()
-    ]
   }
 
   public struct InfoLabel {

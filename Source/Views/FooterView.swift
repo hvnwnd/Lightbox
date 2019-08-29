@@ -29,7 +29,6 @@ open class FooterView: UIView {
   open fileprivate(set) lazy var separatorView: UIView = { [unowned self] in
     let view = UILabel(frame: CGRect.zero)
     view.isHidden = !LightboxConfig.PageIndicator.enabled
-    view.backgroundColor = LightboxConfig.PageIndicator.separatorColor
 
     return view
   }()
@@ -59,11 +58,11 @@ open class FooterView: UIView {
   }
 
   func updatePage(_ page: Int, _ numberOfPages: Int) {
-    let text = "\(page)/\(numberOfPages)"
-
-    pageLabel.attributedText = NSAttributedString(string: text,
-      attributes: LightboxConfig.PageIndicator.textAttributes)
-    pageLabel.sizeToFit()
+//    let text = "\(page)/\(numberOfPages)"
+//
+//    pageLabel.attributedText = NSAttributedString(string: text,
+//      attributes: LightboxConfig.PageIndicator.textAttributes)
+//    pageLabel.sizeToFit()
   }
 
   func updateText(_ text: String) {

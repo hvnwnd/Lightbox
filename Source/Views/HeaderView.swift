@@ -1,7 +1,6 @@
 import UIKit
 
 protocol HeaderViewDelegate: class {
-  func headerView(_ headerView: HeaderView, didPressDeleteButton deleteButton: UIButton)
   func headerView(_ headerView: HeaderView, didPressCloseButton closeButton: UIButton)
 }
 
@@ -33,32 +32,14 @@ open class HeaderView: UIView {
     return button
   }()
 
-  open fileprivate(set) lazy var deleteButton: UIButton = { [unowned self] in
-    let title = NSAttributedString(
-      string: LightboxConfig.DeleteButton.text,
-      attributes: LightboxConfig.DeleteButton.textAttributes)
-
-    let button = UIButton(type: .system)
-
-    button.setAttributedTitle(title, for: .normal)
-
-    if let size = LightboxConfig.DeleteButton.size {
-      button.frame.size = size
-    } else {
-      button.sizeToFit()
+    open var pageIndicator: UIView? {
+        didSet {
+            if let pi = pageIndicator {
+                pi.isHidden = true
+                addSubview(pi)
+            }
+        }
     }
-
-    button.addTarget(self, action: #selector(deleteButtonDidPress(_:)),
-      for: .touchUpInside)
-
-    if let image = LightboxConfig.DeleteButton.image {
-        button.setBackgroundImage(image, for: UIControl.State())
-    }
-
-    button.isHidden = !LightboxConfig.DeleteButton.enabled
-
-    return button
-  }()
 
   weak var delegate: HeaderViewDelegate?
 
@@ -69,7 +50,7 @@ open class HeaderView: UIView {
 
     backgroundColor = UIColor.clear
 
-    [closeButton, deleteButton].forEach { addSubview($0) }
+    addSubview(closeButton)
   }
 
   public required init?(coder aDecoder: NSCoder) {
@@ -77,11 +58,7 @@ open class HeaderView: UIView {
   }
 
   // MARK: - Actions
-
-  @objc func deleteButtonDidPress(_ button: UIButton) {
-    delegate?.headerView(self, didPressDeleteButton: button)
-  }
-
+    
   @objc func closeButtonDidPress(_ button: UIButton) {
     delegate?.headerView(self, didPressCloseButton: button)
   }
@@ -95,7 +72,7 @@ extension HeaderView: LayoutConfigurable {
     let topPadding: CGFloat
 
     if #available(iOS 11, *) {
-      topPadding = safeAreaInsets.top
+      topPadding = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
     } else {
       topPadding = 0
     }
@@ -105,9 +82,10 @@ extension HeaderView: LayoutConfigurable {
       y: topPadding
     )
 
-    deleteButton.frame.origin = CGPoint(
+    pageIndicator?.frame.origin = CGPoint(
       x: 17,
       y: topPadding
     )
+    pageIndicator?.isHidden = !LightboxConfig.PageIndicator.enabled
   }
 }

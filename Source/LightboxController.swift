@@ -184,10 +184,10 @@ open class LightboxController: UIViewController {
 
   open override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    if !presented {
-      presented = true
-      configureLayout(view.bounds.size)
-    }
+//    if !presented {
+//      presented = true
+//      configureLayout(view.bounds.size)
+//    }
   }
 
   open override func viewDidLayoutSubviews() {
@@ -210,6 +210,7 @@ open class LightboxController: UIViewController {
       width: view.bounds.width,
       height: 100
     )
+    configureLayout(view.bounds.size)
   }
 
   open override var prefersStatusBarHidden: Bool {
@@ -463,7 +464,7 @@ extension LightboxController: FooterViewDelegate {
   public func footerView(_ footerView: FooterView, didExpand expanded: Bool) {
     UIView.animate(withDuration: 0.25, animations: {
       self.overlayView.alpha = expanded ? 1.0 : 0.0
-      self.headerView.deleteButton.alpha = expanded ? 0.0 : 1.0
+      self.headerView.pageIndicator?.alpha = expanded ? 0.0 : 1.0
     })
   }
 }
