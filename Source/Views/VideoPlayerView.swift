@@ -56,6 +56,10 @@ class VideoPlayerView: UIView {
         player?.play()
     }
     
+    func stop() {
+        player?.pause()
+    }
+    
     // Override UIView property
     override static var layerClass: AnyClass {
         return AVPlayerLayer.self

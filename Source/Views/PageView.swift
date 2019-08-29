@@ -102,6 +102,12 @@ class PageView: UIScrollView {
         }
     }
     
+    func pauseVideoIfNeeded() {
+        if image.videoURL != nil {
+            videoPlayerView.stop()
+        }
+    }
+    
   func update(with image: LightboxImage) {
     self.image = image
 //    updatePlayButton()

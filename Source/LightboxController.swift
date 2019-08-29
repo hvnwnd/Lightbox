@@ -409,7 +409,8 @@ extension LightboxController: PageViewDelegate {
 
   func pageViewDidTouch(_ pageView: PageView) {
     guard !pageView.hasZoomed else { return }
-
+    pageView.pauseVideoIfNeeded()
+    
     next(false)
 //    imageTouchDelegate?.lightboxController(self, didTouch: images[currentPage], at: currentPage)
 
