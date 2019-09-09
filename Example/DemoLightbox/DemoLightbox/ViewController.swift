@@ -37,7 +37,8 @@ class ViewController: UIViewController, LightboxControllerPageDelegate {
       LightboxImage(
         image: UIImage(named: "photo2")!,
         text: "Emoji 😍 (/ɪˈmoʊdʒi/; singular emoji, plural emoji or emojis;[4] from the Japanese 絵文字えもじ, pronounced [emodʑi]) are ideograms and smileys used in electronic messages and web pages. Emoji are used much like emoticons and exist in various genres, including facial expressions, common objects, places and types of weather 🌅☔️💦, and animals 🐶🐱",
-        videoURL: URL(string: "https://rdvtest01.rdv.mobi/media/2018/11/08/17/portofolio-video.4518228835161590.4518229147689059.6_encoded.mp4")
+        videoURL: URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+//        videoURL: URL(string: "https://rdvtest01.rdv.mobi/media/2018/11/08/17/portofolio-video.4518228835161590.4518229147689059.6_encoded.mp4")
       ),
       LightboxImage(
         image: UIImage(named: "photo3")!,

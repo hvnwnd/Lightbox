@@ -454,6 +454,9 @@ extension LightboxController: HeaderViewDelegate {
     closeButton.isEnabled = false
     presented = false
     dismissalDelegate?.lightboxControllerWillDismiss(self)
+
+    let page = self.pageViews[currentPage]
+    page.pauseVideoIfNeeded()
     dismiss(animated: true, completion: nil)
   }
 }
