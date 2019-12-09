@@ -95,7 +95,8 @@ open class LightboxController: UIViewController {
 
       pageDelegate?.lightboxController(self, didMoveToPage: currentPage)
 
-      if let image = pageViews[currentPage].imageView.image, dynamicBackground {
+      let lightBoxImage = initialImages[currentPage]
+      if let image = pageViews[currentPage].imageView.image, dynamicBackground, !lightBoxImage.isPlaceholder {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.125) {
           self.loadDynamicBackground(image)
         }

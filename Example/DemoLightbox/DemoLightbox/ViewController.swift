@@ -32,17 +32,20 @@ class ViewController: UIViewController, LightboxControllerPageDelegate {
       LightboxImage(imageURL: URL(string: "https://cdn.arstechnica.net/2011/10/05/iphone4s_sample_apple-4e8c706-intro.jpg")!),
       LightboxImage(
         image: UIImage(named: "photo1")!,
-        text: "Photography is the science, art, application and practice of creating durable images by recording light or other electromagnetic radiation, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film"
+        text: "Photography is the science, art, application and practice of creating durable images by recording light or other electromagnetic radiation, either electronically by means of an image sensor, or chemically by means of a light-sensitive material such as photographic film",
+        isPlaceholder: false
       ),
       LightboxImage(
         image: UIImage(named: "photo2")!,
         text: "Emoji 😍 (/ɪˈmoʊdʒi/; singular emoji, plural emoji or emojis;[4] from the Japanese 絵文字えもじ, pronounced [emodʑi]) are ideograms and smileys used in electronic messages and web pages. Emoji are used much like emoticons and exist in various genres, including facial expressions, common objects, places and types of weather 🌅☔️💦, and animals 🐶🐱",
-        videoURL: URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+        videoURL: URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"),
 //        videoURL: URL(string: "https://rdvtest01.rdv.mobi/media/2018/11/08/17/portofolio-video.4518228835161590.4518229147689059.6_encoded.mp4")
+        isPlaceholder: false
       ),
       LightboxImage(
         image: UIImage(named: "photo3")!,
-        text: "A lightbox is a translucent surface illuminated from behind, used for situations where a shape laid upon the surface needs to be seen with high contrast."
+        text: "A lightbox is a translucent surface illuminated from behind, used for situations where a shape laid upon the surface needs to be seen with high contrast.",
+        isPlaceholder: false
       )
     ]
     LightboxConfig.CloseButton.text = "X"

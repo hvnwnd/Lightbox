@@ -8,17 +8,19 @@ open class LightboxImage {
   open fileprivate(set) var videoURL: URL?
   open fileprivate(set) var imageClosure: (() -> UIImage)?
   open var text: String
-
+  open var isPlaceholder: Bool = false
+    
   // MARK: - Initialization
 
   internal init(text: String = "") {
     self.text = text
   }
 
-  public init(image: UIImage, text: String = "", videoURL: URL? = nil) {
+  public init(image: UIImage, text: String = "", videoURL: URL? = nil, isPlaceholder: Bool) {
     self.image = image
     self.text = text
     self.videoURL = videoURL
+    self.isPlaceholder = isPlaceholder
   }
 
   public init(imageURL: URL, text: String = "", videoURL: URL? = nil) {
@@ -34,6 +36,11 @@ open class LightboxImage {
   }
 
   open func addImageTo(_ imageView: UIImageView, completion: ((UIImage?) -> Void)? = nil) {
+    if isPlaceholder {
+        imageView.contentMode = .scaleAspectFill
+    } else {
+        imageView.contentMode = .center
+    }
     if let image = image {
       imageView.image = image
       completion?(image)
