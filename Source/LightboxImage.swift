@@ -16,7 +16,7 @@ open class LightboxImage {
     self.text = text
   }
 
-  public init(image: UIImage, text: String = "", videoURL: URL? = nil, isPlaceholder: Bool) {
+  public init(image: UIImage, text: String = "", videoURL: URL? = nil, isPlaceholder: Bool = false) {
     self.image = image
     self.text = text
     self.videoURL = videoURL
@@ -37,9 +37,9 @@ open class LightboxImage {
 
   open func addImageTo(_ imageView: UIImageView, completion: ((UIImage?) -> Void)? = nil) {
     if isPlaceholder {
-        imageView.contentMode = .scaleAspectFill
-    } else {
         imageView.contentMode = .center
+    } else {
+        imageView.contentMode = .scaleAspectFill
     }
     if let image = image {
       imageView.image = image
